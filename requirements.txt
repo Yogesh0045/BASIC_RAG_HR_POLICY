@@ -13,3 +13,4 @@ langchain-text-splitters
 faiss-cpu
 ipykernel
 
+streamlit

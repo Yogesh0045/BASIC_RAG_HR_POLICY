@@ -9,3 +9,4 @@ wheels/
 
 # Virtual environments
 basicrangenv
+data\faiss_index
