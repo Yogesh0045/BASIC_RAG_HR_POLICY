@@ -2,6 +2,7 @@
 
 from langchain.tools import tool
 from hr_assistant.logger import get_logger
+from hr_assistant.guardrails import input_safety
 
 logger = get_logger(__name__)
 
@@ -20,6 +21,7 @@ def create_search_tool(retriever):
     @tool
     def search_hr_policy(question: str) -> str:
         """Search the HR policy document for specific information. Use this tool to look up facts about employee benefits, leave policies, probation, notice periods, reimbursement, code of conduct, holidays, and exit procedures."""
+        question = input_safety(question)
         logger.info(f"Searching HR policy for: {question}")
         matching_chunks = retriever.invoke(question)
         logger.info(f"Found %d matching chunk(s)", len(matching_chunks))

@@ -13,6 +13,9 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 ## EMBEDDINGS API KEY
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
+## GUARD MODEL
+GUARD_MODEL_NAME = "openai/gpt-oss-safeguard-20b"
+
 ## LANGSMITH API KEY
 LANGSMITH_API_KEY = os.getenv("LANGSMITH_API_KEY")
 LANGSMITH_TRACING = os.getenv("LANGSMITH_TRACING", "false")

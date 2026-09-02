@@ -7,6 +7,7 @@ from hr_assistant import config
 from hr_assistant.llm import get_llm
 from hr_assistant.tools import create_tools
 from hr_assistant.logger import get_logger
+from hr_assistant.guardrails import input_safety, output_safety
 
 logger = get_logger(__name__)
 
@@ -47,6 +48,7 @@ def ask_assistant(agent_executor, question: str) -> str:
     """
     from langchain_core.messages import HumanMessage
     
+    question = input_safety(question)
     logger.info("Asking assistant: %s", question)
 
     
@@ -56,7 +58,7 @@ def ask_assistant(agent_executor, question: str) -> str:
     
     # Extract the last message from the response
     messages = response.get("messages", [])
-    answer = messages[-1].content if messages else "No answer found"
+    answer = output_safety(messages[-1].content if messages else None)
     
     logger.info("ANSWER: %s", answer)
     
