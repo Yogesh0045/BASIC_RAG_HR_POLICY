@@ -14,9 +14,13 @@ from hr_assistant.vector_store import (
     get_retriever,
 )
 from hr_assistant.agent import create_agent_executor
+from hr_assistant.tracing import check_langsmith_tracing
 from hr_assistant.logger import get_logger  
 
 logger = get_logger(__name__)
+
+# Check Langsmith tracing status
+check_langsmith_tracing()
 
 def load_documents():
     """

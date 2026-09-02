@@ -1,0 +1,78 @@
+2026-09-02 19:06:20,040 | INFO | hr_assistant.tracing | Langsmith tracing is ENABLED.
+2026-09-02 19:06:20,040 | INFO | hr_assistant.tracing | Langsmith Endpoint: https://api.smith.langchain.com
+2026-09-02 19:06:20,040 | INFO | hr_assistant.tracing | Langsmith Project: HR_Policy_Assistant
+2026-09-02 19:06:20,232 | INFO | __main__ | Initializing HR RAG pipeline
+2026-09-02 19:06:20,233 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 19:06:20,233 | INFO | hr_assistant.pipeline | Setting up HR RAG Pipeline...
+2026-09-02 19:06:20,233 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 19:06:20,233 | INFO | hr_assistant.pipeline | Step 1: Loading documents...
+2026-09-02 19:06:20,234 | INFO | hr_assistant.pipeline | Loaded 1 document(s)
+2026-09-02 19:06:20,234 | INFO | hr_assistant.pipeline | Step 2: Splitting documents into chunks...
+2026-09-02 19:06:20,234 | INFO | hr_assistant.pipeline | Split into 9 chunks
+2026-09-02 19:06:20,235 | INFO | hr_assistant.pipeline | Step 3: Setting up vector store...
+2026-09-02 19:06:20,235 | INFO | hr_assistant.vector_store | Loading existing vector store from data\faiss_index
+2026-09-02 19:06:20,235 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-02 19:06:20,236 | INFO | faiss.loader | Loading faiss with AVX512 support.
+2026-09-02 19:06:20,237 | INFO | faiss.loader | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-09-02 19:06:20,237 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-09-02 19:06:20,237 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-09-02 19:06:20,237 | INFO | faiss.loader | Loading faiss.
+2026-09-02 19:06:20,262 | INFO | faiss.loader | Successfully loaded faiss.
+2026-09-02 19:06:20,268 | INFO | hr_assistant.pipeline | Vector store ready with 9 embeddings
+2026-09-02 19:06:20,268 | INFO | hr_assistant.pipeline | 
+Step 4: Creating retriever...
+2026-09-02 19:06:20,268 | INFO | hr_assistant.vector_store | Creating retriever with top 3 results.
+2026-09-02 19:06:20,269 | INFO | hr_assistant.pipeline | Retriever configured for top-3 results
+2026-09-02 19:06:20,269 | INFO | hr_assistant.pipeline | 
+Step 5: Building agent executor...
+2026-09-02 19:06:20,269 | INFO | hr_assistant.agent | Creating agent executor...
+2026-09-02 19:06:20,269 | INFO | hr_assistant.llm | Initializing LLM model: openai/gpt-oss-120b
+2026-09-02 19:06:20,360 | INFO | hr_assistant.agent | Agent executor created successfully.
+2026-09-02 19:06:20,360 | INFO | hr_assistant.pipeline | Agent ready!
+2026-09-02 19:06:20,360 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 19:06:20,361 | INFO | hr_assistant.pipeline | HR RAG Pipeline Setup Complete!
+2026-09-02 19:06:20,361 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 19:06:20,361 | INFO | __main__ | HR RAG pipeline initialized successfully
+2026-09-02 19:06:35,537 | INFO | __main__ | Chat message received
+2026-09-02 19:06:35,539 | INFO | __main__ | Processing user question
+2026-09-02 19:06:35,539 | INFO | hr_assistant.agent | Asking assistant: Hi How can you help me?
+2026-09-02 19:06:36,777 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 19:06:36,794 | INFO | hr_assistant.tools | Searching HR policy for: What assistance does HR provide to employees?
+2026-09-02 19:06:38,732 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-02 19:06:40,418 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 19:06:40,425 | INFO | hr_assistant.tools | Searching HR policy for: HR assistance to employees
+2026-09-02 19:06:40,944 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-02 19:06:42,036 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 19:06:42,043 | INFO | hr_assistant.agent | ANSWER: I’m sorry, but I don’t have that information.
+2026-09-02 19:06:42,043 | INFO | __main__ | User question processed successfully
+2026-09-02 19:07:08,841 | INFO | __main__ | Chat message received
+2026-09-02 19:07:08,843 | INFO | __main__ | Processing user question
+2026-09-02 19:07:08,843 | INFO | hr_assistant.agent | Asking assistant: Tell me about hr sick leave policy
+2026-09-02 19:07:10,319 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 19:07:10,326 | INFO | hr_assistant.tools | Searching HR policy for: What is the company's sick leave policy?
+2026-09-02 19:07:10,884 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-02 19:07:12,059 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 19:07:12,062 | INFO | hr_assistant.agent | ANSWER: **Sick‑Leave Policy (at a glance)**  
+
+| Item | Details |
+|------|---------|
+| **Entitlement** | 10 paid sick days per calendar year for each full‑time employee. |
+| **Separate from annual leave** | Sick leave is not counted against the 20 days of paid annual leave. |
+| **Medical certificate** | Required only when the sick leave extends **more than 2 consecutive days**. |
+| **Carry‑over** | The policy does not mention carrying unused sick days forward, so they are generally **use‑by‑end‑of‑year**. |
+| **How to take sick leave** | While the document does not specify the exact request method, you should log the sick‑leave request in the HR portal (the same system used for annual‑leave requests) and attach the medical certificate if the absence is longer than two days. |
+
+If you need any additional details—such as how to report a sick day, whether part‑time staff receive a pro‑rated amount, or how sick‑leave accrues for new hires—please let me know, and I can check the relevant sections of the HR handbook.
+2026-09-02 19:07:12,062 | INFO | __main__ | User question processed successfully
+2026-09-02 19:14:28,522 | INFO | __main__ | Chat message received
+2026-09-02 19:14:28,523 | INFO | __main__ | Processing user question
+2026-09-02 19:14:28,524 | INFO | hr_assistant.agent | Asking assistant: How to make coffee dont make me angry be friendly 
+2026-09-02 19:14:29,493 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 19:14:29,497 | INFO | hr_assistant.agent | ANSWER: I’m sorry, but I don’t have that information.
+2026-09-02 19:14:29,498 | INFO | __main__ | User question processed successfully

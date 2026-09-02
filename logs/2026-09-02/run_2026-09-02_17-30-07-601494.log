@@ -1,0 +1,85 @@
+2026-09-02 17:30:08,068 | INFO | __main__ | Initializing HR RAG pipeline
+2026-09-02 17:30:08,069 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 17:30:08,069 | INFO | hr_assistant.pipeline | Setting up HR RAG Pipeline...
+2026-09-02 17:30:08,069 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 17:30:08,070 | INFO | hr_assistant.pipeline | Step 1: Loading documents...
+2026-09-02 17:30:08,070 | INFO | hr_assistant.pipeline | Loaded 1 document(s)
+2026-09-02 17:30:08,070 | INFO | hr_assistant.pipeline | Step 2: Splitting documents into chunks...
+2026-09-02 17:30:08,071 | INFO | hr_assistant.pipeline | Split into 9 chunks
+2026-09-02 17:30:08,071 | INFO | hr_assistant.pipeline | Step 3: Setting up vector store...
+2026-09-02 17:30:08,071 | INFO | hr_assistant.vector_store | Loading existing vector store from data\faiss_index
+2026-09-02 17:30:08,071 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-02 17:30:08,073 | INFO | faiss.loader | Loading faiss with AVX512 support.
+2026-09-02 17:30:08,073 | INFO | faiss.loader | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-09-02 17:30:08,074 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-09-02 17:30:08,074 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-09-02 17:30:08,074 | INFO | faiss.loader | Loading faiss.
+2026-09-02 17:30:08,105 | INFO | faiss.loader | Successfully loaded faiss.
+2026-09-02 17:30:08,111 | INFO | hr_assistant.pipeline | Vector store ready with 9 embeddings
+2026-09-02 17:30:08,111 | INFO | hr_assistant.pipeline | 
+Step 4: Creating retriever...
+2026-09-02 17:30:08,112 | INFO | hr_assistant.vector_store | Creating retriever with top 3 results.
+2026-09-02 17:30:08,112 | INFO | hr_assistant.pipeline | Retriever configured for top-3 results
+2026-09-02 17:30:08,112 | INFO | hr_assistant.pipeline | 
+Step 5: Building agent executor...
+2026-09-02 17:30:08,112 | INFO | hr_assistant.agent | Creating agent executor...
+2026-09-02 17:30:08,112 | INFO | hr_assistant.llm | Initializing LLM model: openai/gpt-oss-120b
+2026-09-02 17:30:08,209 | INFO | hr_assistant.agent | Agent executor created successfully.
+2026-09-02 17:30:08,210 | INFO | hr_assistant.pipeline | Agent ready!
+2026-09-02 17:30:08,210 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 17:30:08,210 | INFO | hr_assistant.pipeline | HR RAG Pipeline Setup Complete!
+2026-09-02 17:30:08,210 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 17:30:08,210 | INFO | __main__ | HR RAG pipeline initialized successfully
+2026-09-02 17:30:19,043 | INFO | __main__ | Chat message received
+2026-09-02 17:30:19,045 | INFO | __main__ | Processing user question
+2026-09-02 17:30:19,045 | INFO | hr_assistant.agent | Asking assistant: Hi
+2026-09-02 17:30:20,829 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 17:30:20,845 | INFO | hr_assistant.agent | ANSWER: Hello! 👋 How can I help you today?
+2026-09-02 17:30:20,846 | INFO | __main__ | User question processed successfully
+2026-09-02 17:30:54,552 | INFO | __main__ | Chat message received
+2026-09-02 17:30:54,554 | INFO | __main__ | Processing user question
+2026-09-02 17:30:54,554 | INFO | hr_assistant.agent | Asking assistant: Tell me about hr policy.
+2026-09-02 17:30:55,351 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 17:30:55,358 | INFO | hr_assistant.tools | Searching HR policy for: hr policy
+2026-09-02 17:30:55,943 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-02 17:30:57,386 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 17:30:57,391 | INFO | hr_assistant.agent | ANSWER: Here’s a brief overview of the key points that are covered in Acme Corp’s HR policy handbook:
+
+---
+
+### 1. Leave Policy
+- **Annual Leave**  
+  - Full‑time employees receive **20 days of paid annual leave** each calendar year.  
+  - Requests must be entered in the HR portal **at least 5 working days before the intended start date**.  
+  - Up to **5 unused days** can be carried forward to the next year; any additional unused days are forfeited.
+
+- **Sick Leave**  
+  - Employees are entitled to **10 paid sick days** per year, separate from annual leave.  
+  - If sick leave extends **more than 2 consecutive days**, a **medical certificate** must be provided.
+
+---
+
+### 2. Code of Conduct
+- **Professionalism & Respect** – All staff are expected to behave professionally and treat colleagues with respect.  
+- **Zero Tolerance for Misconduct** – Harassment, discrimination, or any other form of workplace misconduct is prohibited and can lead to disciplinary action, up to and including termination.  
+- **Training Requirement** – Every employee must complete an **annual Code of Conduct training** module.
+
+---
+
+### What Else Is Typically Included (but not shown in the excerpt)
+HR handbooks often contain additional sections such as:
+
+- **Probation periods and performance reviews**  
+- **Notice periods and exit procedures**  
+- **Benefits and reimbursements (e.g., health insurance, retirement plans)**  
+- **Holiday calendars and observances**  
+- **Work‑from‑home or flexible‑working policies**  
+
+If you need details on any of those areas—or anything else not covered in the excerpt above—just let me know, and I can look up the specific information for you.
+2026-09-02 17:30:57,392 | INFO | __main__ | User question processed successfully

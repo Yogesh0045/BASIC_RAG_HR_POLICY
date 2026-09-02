@@ -13,6 +13,11 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 ## EMBEDDINGS API KEY
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
+## LANGSMITH API KEY
+LANGSMITH_API_KEY = os.getenv("LANGSMITH_API_KEY")
+LANGSMITH_TRACING = os.getenv("LANGSMITH_TRACING", "false")
+LANGSMITH_ENDPOINT = os.getenv("LANGSMITH_ENDPOINT")
+LANGSMITH_PROJECT = os.getenv("LANGSMITH_PROJECT")
 
 ## Define the data path and vectore store path
 LOAD_FILE_PATH = os.path.join("data", "hr_policy.txt")

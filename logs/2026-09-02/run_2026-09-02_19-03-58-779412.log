@@ -1,0 +1,41 @@
+2026-09-02 19:03:59,063 | INFO | hr_assistant.tracing | Langsmith tracing is ENABLED.
+2026-09-02 19:03:59,064 | INFO | hr_assistant.tracing | Langsmith Endpoint: https://api.smith.langchain.com
+2026-09-02 19:03:59,064 | INFO | hr_assistant.tracing | Langsmith Project: HR_Policy_Assistant
+2026-09-02 19:03:59,266 | INFO | __main__ | Initializing HR RAG pipeline
+2026-09-02 19:03:59,268 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 19:03:59,268 | INFO | hr_assistant.pipeline | Setting up HR RAG Pipeline...
+2026-09-02 19:03:59,268 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 19:03:59,268 | INFO | hr_assistant.pipeline | Step 1: Loading documents...
+2026-09-02 19:03:59,269 | INFO | hr_assistant.pipeline | Loaded 1 document(s)
+2026-09-02 19:03:59,269 | INFO | hr_assistant.pipeline | Step 2: Splitting documents into chunks...
+2026-09-02 19:03:59,269 | INFO | hr_assistant.pipeline | Split into 9 chunks
+2026-09-02 19:03:59,270 | INFO | hr_assistant.pipeline | Step 3: Setting up vector store...
+2026-09-02 19:03:59,270 | INFO | hr_assistant.vector_store | Loading existing vector store from data\faiss_index
+2026-09-02 19:03:59,270 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-02 19:03:59,273 | INFO | faiss.loader | Loading faiss with AVX512 support.
+2026-09-02 19:03:59,274 | INFO | faiss.loader | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-09-02 19:03:59,274 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-09-02 19:03:59,274 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-09-02 19:03:59,274 | INFO | faiss.loader | Loading faiss.
+2026-09-02 19:03:59,296 | INFO | faiss.loader | Successfully loaded faiss.
+2026-09-02 19:03:59,304 | INFO | hr_assistant.pipeline | Vector store ready with 9 embeddings
+2026-09-02 19:03:59,305 | INFO | hr_assistant.pipeline | 
+Step 4: Creating retriever...
+2026-09-02 19:03:59,305 | INFO | hr_assistant.vector_store | Creating retriever with top 3 results.
+2026-09-02 19:03:59,305 | INFO | hr_assistant.pipeline | Retriever configured for top-3 results
+2026-09-02 19:03:59,305 | INFO | hr_assistant.pipeline | 
+Step 5: Building agent executor...
+2026-09-02 19:03:59,305 | INFO | hr_assistant.agent | Creating agent executor...
+2026-09-02 19:03:59,305 | INFO | hr_assistant.llm | Initializing LLM model: openai/gpt-oss-120b
+2026-09-02 19:03:59,439 | INFO | hr_assistant.agent | Agent executor created successfully.
+2026-09-02 19:03:59,439 | INFO | hr_assistant.pipeline | Agent ready!
+2026-09-02 19:03:59,440 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 19:03:59,440 | INFO | hr_assistant.pipeline | HR RAG Pipeline Setup Complete!
+2026-09-02 19:03:59,440 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 19:03:59,440 | INFO | __main__ | HR RAG pipeline initialized successfully
