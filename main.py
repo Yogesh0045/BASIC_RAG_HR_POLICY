@@ -4,9 +4,12 @@ Run with: python main.py
 
 """
 
+from hr_assistant import logger
 from hr_assistant.pipeline import setup_rag_pipeline
 from hr_assistant.agent import ask_assistant
+from hr_assistant.logger import get_logger
 
+logger = get_logger(__name__)
 
 def main():
     """
@@ -16,30 +19,30 @@ def main():
         # Set up the RAG pipeline
         agent_executor, retriever, vector_store = setup_rag_pipeline()
         
-        print("\n" + "=" * 60)
-        print("Welcome to the HR Policy Assistant!")
-        print("Type 'exit' or 'quit' to end the conversation.")
-        print("=" * 60 + "\n")
+        logger.info("\n" + "=" * 60)
+        logger.info("Welcome to the HR Policy Assistant!")
+        logger.info("Type 'exit' or 'quit' to end the conversation.")
+        logger.info("=" * 60 + "\n")
         
         # Interactive loop for asking questions
         while True:
             question = input("\nYou: ").strip()
             
             if not question:
-                print("Please enter a question.")
+                logger.info("Please enter a question.")
                 continue
             
             if question.lower() in ["exit", "quit"]:
-                print("\nThank you for using the HR Policy Assistant. Goodbye!")
+                logger.info("\nThank you for using the HR Policy Assistant. Goodbye!")
                 break
             
             # Get the answer from the assistant
             answer = ask_assistant(agent_executor, question)
     
     except KeyboardInterrupt:
-        print("\n\nAssistant stopped by user.")
+        logger.info("\n\nAssistant stopped by user.")
     except Exception as e:
-        print(f"\nError: {e}")
+        logger.error(f"\nError: {e}")
         raise
 
 

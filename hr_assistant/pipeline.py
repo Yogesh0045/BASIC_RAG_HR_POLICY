@@ -6,7 +6,6 @@ both call. Each step is handled by its own small module.
 
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
 from hr_assistant import config
 from hr_assistant.vector_store import (
     build_vector_store,
@@ -15,7 +14,9 @@ from hr_assistant.vector_store import (
     get_retriever,
 )
 from hr_assistant.agent import create_agent_executor
+from hr_assistant.logger import get_logger  
 
+logger = get_logger(__name__)
 
 def load_documents():
     """
@@ -26,7 +27,7 @@ def load_documents():
     """
     loader = TextLoader(config.LOAD_FILE_PATH, encoding="utf-8")
     documents = loader.load()
-    print(f"Loaded {len(documents)} document(s)")
+    logger.info(f"Loaded {len(documents)} document(s)")
     return documents
 
 
@@ -46,7 +47,7 @@ def split_documents(documents):
         length_function=len,
     )
     chunks = splitter.split_documents(documents)
-    print(f"Split into {len(chunks)} chunks")
+    logger.info(f"Split into {len(chunks)} chunks")
     return chunks
 
 
@@ -64,35 +65,35 @@ def setup_rag_pipeline():
     Returns:
         tuple: (agent_executor, retriever, vector_store)
     """
-    print("\n" + "=" * 60)
-    print("Setting up HR RAG Pipeline...")
-    print("=" * 60 + "\n")
+    logger.info("\n" + "=" * 60)
+    logger.info("Setting up HR RAG Pipeline...")
+    logger.info("=" * 60 + "\n")
     
     # Step 1: Load documents
-    print("Step 1: Loading documents...")
+    logger.info("Step 1: Loading documents...")
     documents = load_documents()
     
     # Step 2: Split into chunks
-    print("\nStep 2: Splitting documents into chunks...")
+    logger.info("Step 2: Splitting documents into chunks...")
     chunks = split_documents(documents)
     
     # Step 3: Build/load vector store
-    print("\nStep 3: Setting up vector store...")
+    logger.info("Step 3: Setting up vector store...")
     vector_store = get_or_create_vector_store(chunks)
-    print(f"Vector store ready with {vector_store.index.ntotal} embeddings")
+    logger.info(f"Vector store ready with {vector_store.index.ntotal} embeddings")
     
     # Step 4: Create retriever
-    print("\nStep 4: Creating retriever...")
+    logger.info("\nStep 4: Creating retriever...")
     retriever = get_retriever(vector_store)
-    print(f"Retriever configured for top-{config.TOP_K_RESULTS} results")
+    logger.info(f"Retriever configured for top-{config.TOP_K_RESULTS} results")
     
     # Step 5: Build agent
-    print("\nStep 5: Building agent executor...")
+    logger.info("\nStep 5: Building agent executor...")
     agent_executor = create_agent_executor(retriever)
-    print("Agent ready!")
+    logger.info("Agent ready!")
     
-    print("\n" + "=" * 60)
-    print("HR RAG Pipeline Setup Complete!")
-    print("=" * 60 + "\n")
+    logger.info("\n" + "=" * 60)
+    logger.info("HR RAG Pipeline Setup Complete!")
+    logger.info("=" * 60 + "\n")
     
     return agent_executor, retriever, vector_store

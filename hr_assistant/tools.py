@@ -1,6 +1,9 @@
 """ Step-5: Wrap the retriever as a tool the agent can call. """
 
 from langchain.tools import tool
+from hr_assistant.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 def create_search_tool(retriever):
@@ -17,7 +20,9 @@ def create_search_tool(retriever):
     @tool
     def search_hr_policy(question: str) -> str:
         """Search the HR policy document for specific information. Use this tool to look up facts about employee benefits, leave policies, probation, notice periods, reimbursement, code of conduct, holidays, and exit procedures."""
+        logger.info(f"Searching HR policy for: {question}")
         matching_chunks = retriever.invoke(question)
+        logger.info(f"Found %d matching chunk(s)", len(matching_chunks))
         return "\n\n".join(chunk.page_content for chunk in matching_chunks)
     
     return search_hr_policy

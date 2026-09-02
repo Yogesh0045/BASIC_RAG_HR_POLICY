@@ -1,0 +1,62 @@
+2026-09-02 17:01:11,202 | INFO | __main__ | Initializing HR RAG pipeline
+2026-09-02 17:01:11,204 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 17:01:11,204 | INFO | hr_assistant.pipeline | Setting up HR RAG Pipeline...
+2026-09-02 17:01:11,204 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 17:01:11,204 | INFO | hr_assistant.pipeline | Step 1: Loading documents...
+2026-09-02 17:01:11,205 | INFO | hr_assistant.pipeline | Loaded 1 document(s)
+2026-09-02 17:01:11,205 | INFO | hr_assistant.pipeline | Step 2: Splitting documents into chunks...
+2026-09-02 17:01:11,206 | INFO | hr_assistant.pipeline | Split into 9 chunks
+2026-09-02 17:01:11,207 | INFO | hr_assistant.pipeline | Step 3: Setting up vector store...
+2026-09-02 17:01:11,207 | INFO | hr_assistant.vector_store | Loading existing vector store from data\faiss_index
+2026-09-02 17:01:11,207 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-02 17:01:11,209 | INFO | faiss.loader | Loading faiss with AVX512 support.
+2026-09-02 17:01:11,209 | INFO | faiss.loader | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-09-02 17:01:11,209 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-09-02 17:01:11,210 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-09-02 17:01:11,210 | INFO | faiss.loader | Loading faiss.
+2026-09-02 17:01:11,241 | INFO | faiss.loader | Successfully loaded faiss.
+2026-09-02 17:01:11,248 | INFO | hr_assistant.pipeline | Vector store ready with 9 embeddings
+2026-09-02 17:01:11,248 | INFO | hr_assistant.pipeline | 
+Step 4: Creating retriever...
+2026-09-02 17:01:11,248 | INFO | hr_assistant.vector_store | Creating retriever with top 3 results.
+2026-09-02 17:01:11,248 | INFO | hr_assistant.pipeline | Retriever configured for top-3 results
+2026-09-02 17:01:11,249 | INFO | hr_assistant.pipeline | 
+Step 5: Building agent executor...
+2026-09-02 17:01:11,249 | INFO | hr_assistant.agent | Creating agent executor...
+2026-09-02 17:01:11,249 | INFO | hr_assistant.llm | Initializing LLM model: openai/gpt-oss-120b
+2026-09-02 17:01:11,352 | INFO | hr_assistant.agent | Agent executor created successfully.
+2026-09-02 17:01:11,352 | INFO | hr_assistant.pipeline | Agent ready!
+2026-09-02 17:01:11,353 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-02 17:01:11,353 | INFO | hr_assistant.pipeline | HR RAG Pipeline Setup Complete!
+2026-09-02 17:01:11,353 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-02 17:01:11,353 | INFO | __main__ | HR RAG pipeline initialized successfully
+2026-09-02 17:01:39,915 | INFO | __main__ | Chat message received
+2026-09-02 17:01:39,917 | INFO | __main__ | Processing user question
+2026-09-02 17:01:39,917 | INFO | hr_assistant.agent | Asking assistant: Tell overall about leave policy
+2026-09-02 17:01:40,642 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 17:01:40,671 | INFO | hr_assistant.tools | Searching HR policy for: overall leave policy
+2026-09-02 17:01:41,448 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-02 17:01:42,791 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-02 17:01:42,793 | INFO | hr_assistant.agent | ANSWER: **Overall Leave Policy**
+
+| Leave Type | Entitlement | Key Rules |
+|------------|-------------|-----------|
+| **Annual (Paid) Leave** | 20 days per calendar year (full‑time employees) | • Requests must be submitted through the HR portal **at least 5 working days** before the intended start date.<br>• Up to **5 unused days** can be carried forward to the next year; any excess is forfeited. |
+| **Sick Leave** | 10 paid days per year | • Separate from annual leave.<br>• A medical certificate is required **if the sick leave exceeds 2 consecutive days**. |
+| **Public Holidays** | 12 days per year (as per the official holiday calendar) | • If you work on a public holiday, you are eligible for **compensatory leave**. |
+| **Leave Encashment** | Not explicitly stated for annual leave; however, unused annual leave can be carried forward (max 5 days). | • Any remaining balance beyond the carry‑forward limit is typically not paid out (based on the policy excerpt). |
+
+**General Process**
+
+1. **Submission** – Use the HR portal to request leave, ensuring the 5‑day advance notice for annual leave.  
+2. **Approval** – Your manager and HR will review the request; approvals are recorded in the portal.  
+3. **Documentation** – For sick leave longer than 2 days, attach a medical certificate.  
+
+**Note:** The policy excerpt does not mention other leave types (e.g., parental, bereavement, or unpaid leave). If you need details on those or on leave encashment specifics, please let me know and I can look up the relevant sections.
+2026-09-02 17:01:42,794 | INFO | __main__ | User question processed successfully

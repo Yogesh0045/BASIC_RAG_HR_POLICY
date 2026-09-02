@@ -1,11 +1,14 @@
 """step-7: Build the agent ties the LLM and the search tool together."""
 
+from hr_assistant import logger
 from langgraph.prebuilt import create_react_agent
 
 from hr_assistant import config
 from hr_assistant.llm import get_llm
 from hr_assistant.tools import create_tools
+from hr_assistant.logger import get_logger
 
+logger = get_logger(__name__)
 
 def create_agent_executor(retriever):
     """
@@ -17,6 +20,7 @@ def create_agent_executor(retriever):
     Returns:
         A compiled graph agent ready to process queries.
     """
+    logger.info("Creating agent executor...")
     llm = get_llm()
     tools = create_tools(retriever)
     
@@ -26,7 +30,7 @@ def create_agent_executor(retriever):
         tools,
         prompt=config.system_prompt,
     )
-    
+    logger.info("Agent executor created successfully.")
     return agent_executor
 
 
@@ -43,9 +47,8 @@ def ask_assistant(agent_executor, question: str) -> str:
     """
     from langchain_core.messages import HumanMessage
     
-    print("=" * 60)
-    print("QUESTION:", question)
-    print("=" * 60)
+    logger.info("Asking assistant: %s", question)
+
     
     response = agent_executor.invoke({
         "messages": [HumanMessage(content=question)],
@@ -55,7 +58,6 @@ def ask_assistant(agent_executor, question: str) -> str:
     messages = response.get("messages", [])
     answer = messages[-1].content if messages else "No answer found"
     
-    print("ANSWER:", answer)
-    print("=" * 60)
+    logger.info("ANSWER: %s", answer)
     
     return answer

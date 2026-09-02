@@ -6,6 +6,10 @@ import streamlit as st
 from hr_assistant.pipeline import setup_rag_pipeline
 from hr_assistant.agent import ask_assistant
 
+from hr_assistant.logger import get_logger
+
+logger = get_logger(__name__)
+
 # Page configuration
 st.set_page_config(
     page_title="HR Policy Assistant",
@@ -50,25 +54,32 @@ if "error_message" not in st.session_state:
 
 def initialize_pipeline():
     """Initialize the RAG pipeline."""
+    logger.info("Initializing HR RAG pipeline")
     try:
         with st.spinner("🔄 Setting up HR RAG Pipeline..."):
             st.session_state.agent_executor, _, _ = setup_rag_pipeline()
             st.session_state.pipeline_initialized = True
             st.session_state.error_message = None
+            logger.info("HR RAG pipeline initialized successfully")
     except Exception as e:
+        logger.exception("Failed to initialize HR RAG pipeline")
         st.session_state.error_message = f"Error initializing pipeline: {str(e)}"
         st.error(st.session_state.error_message)
 
 
 def process_question(question: str) -> str:
     """Process a question through the agent."""
+    logger.info("Processing user question")
     try:
         if not st.session_state.pipeline_initialized:
+            logger.warning("Question received before pipeline initialization")
             return "Error: Pipeline not initialized. Please refresh the page."
         
         response = ask_assistant(st.session_state.agent_executor, question)
+        logger.info("User question processed successfully")
         return response
     except Exception as e:
+        logger.exception("Failed to process user question")
         error_msg = f"Error processing question: {str(e)}"
         return error_msg
 
@@ -79,6 +90,7 @@ with col1:
     st.markdown('<div class="header-title">💼 HR Policy Assistant</div>', unsafe_allow_html=True)
 with col2:
     if st.button("🔄 Refresh Pipeline", key="refresh_btn"):
+        logger.info("Pipeline refresh requested")
         st.session_state.pipeline_initialized = False
         st.session_state.chat_history = []
         initialize_pipeline()
@@ -109,6 +121,7 @@ else:
     user_input = st.chat_input("Ask me anything about HR policies...", key="chat_input")
     
     if user_input:
+        logger.info("Chat message received")
         # Add user message to history
         st.session_state.chat_history.append({
             "role": "user",
@@ -166,6 +179,7 @@ with st.sidebar:
     # Chat management
     st.subheader("💬 Chat Management")
     if st.button("🗑️ Clear Chat History", key="clear_history_btn"):
+        logger.info("Chat history cleared")
         st.session_state.chat_history = []
         st.success("Chat history cleared!")
         st.rerun()

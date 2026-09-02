@@ -5,7 +5,9 @@ from langchain_community.vectorstores import FAISS
 
 from hr_assistant import config
 from hr_assistant.embeddings import get_embeddings_model
+from hr_assistant.logger import get_logger
 
+logger = get_logger(__name__)
 
 def build_vector_store(chunks):
     """
@@ -17,8 +19,10 @@ def build_vector_store(chunks):
     Returns:
         FAISS: Vector store object with indexed embeddings.
     """
+    logger.info("Building vector store...")
     embeddings = get_embeddings_model()
     vector_store = FAISS.from_documents(chunks, embeddings)
+    logger.info("Vector store built successfully.")
     return vector_store
 
 
@@ -35,7 +39,7 @@ def save_vector_store(vector_store, path=None):
     
     os.makedirs(os.path.dirname(path), exist_ok=True)
     vector_store.save_local(path)
-    print(f"Vector store saved to {path}")
+    logger.info(f"Vector store saved to {path}")
 
 
 def load_vector_store(path=None):
@@ -69,10 +73,10 @@ def get_or_create_vector_store(chunks):
     path = config.VECTOR_STORE_PATH
     
     if os.path.exists(path):
-        print(f"Loading existing vector store from {path}")
+        logger.info(f"Loading existing vector store from {path}")
         return load_vector_store(path)
     else:
-        print("Creating new vector store...")
+        logger.info("Creating new vector store...")
         vector_store = build_vector_store(chunks)
         save_vector_store(vector_store, path)
         return vector_store
@@ -91,5 +95,6 @@ def get_retriever(vector_store, k=None):
     """
     if k is None:
         k = config.TOP_K_RESULTS
+    logger.info(f"Creating retriever with top {k} results.")
     return vector_store.as_retriever(search_kwargs={"k": k})
 
