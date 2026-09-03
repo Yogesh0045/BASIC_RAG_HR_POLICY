@@ -1,0 +1,5 @@
+2026-09-03 12:09:10,497 | INFO | hr_assistant.vector_store | Loading existing Qdrant Cloud collection: hr_policy_assistant
+2026-09-03 12:09:10,498 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-03 12:09:11,591 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-03 12:09:11,592 | INFO | hr_assistant.vector_store | Creating retriever with top 1 results.
+2026-09-03 12:09:13,276 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"

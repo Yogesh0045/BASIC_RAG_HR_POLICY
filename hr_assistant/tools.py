@@ -12,7 +12,7 @@ def create_search_tool(retriever):
     Create a tool that wraps the retriever for agent use.
     
     Args:
-        retriever: LangChain retriever object from FAISS vector store.
+        retriever: LangChain retriever object from Qdrant Cloud.
     
     Returns:
         Tool: A LangChain Tool object that can be used by agents.

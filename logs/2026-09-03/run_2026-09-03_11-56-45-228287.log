@@ -1,0 +1,60 @@
+2026-09-03 11:56:45,665 | INFO | hr_assistant.tracing | Langsmith tracing is ENABLED.
+2026-09-03 11:56:45,665 | INFO | hr_assistant.tracing | Langsmith Endpoint: https://api.smith.langchain.com
+2026-09-03 11:56:45,666 | INFO | hr_assistant.tracing | Langsmith Project: HR_Policy_Assistant
+2026-09-03 11:56:45,995 | INFO | __main__ | Initializing HR RAG pipeline
+2026-09-03 11:56:45,996 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-03 11:56:45,997 | INFO | hr_assistant.pipeline | Setting up HR RAG Pipeline...
+2026-09-03 11:56:45,997 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-03 11:56:45,997 | INFO | hr_assistant.pipeline | Step 1: Loading documents...
+2026-09-03 11:56:45,998 | INFO | hr_assistant.pipeline | Loaded 1 document(s)
+2026-09-03 11:56:45,998 | INFO | hr_assistant.pipeline | Step 2: Splitting documents into chunks...
+2026-09-03 11:56:45,999 | INFO | hr_assistant.pipeline | Split into 9 chunks
+2026-09-03 11:56:45,999 | INFO | hr_assistant.pipeline | Step 3: Setting up vector store...
+2026-09-03 11:56:47,245 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/exists "HTTP/1.1 200 OK"
+2026-09-03 11:56:47,246 | INFO | hr_assistant.vector_store | Creating Qdrant Cloud collection: hr_policy_assistant
+2026-09-03 11:56:47,246 | INFO | hr_assistant.vector_store | Building vector store...
+2026-09-03 11:56:47,246 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-03 11:56:47,265 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-03 11:56:49,322 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-03 11:56:49,339 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-03 11:56:49,347 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/exists "HTTP/1.1 200 OK"
+2026-09-03 11:56:49,348 | ERROR | __main__ | Failed to initialize HR RAG pipeline
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\app.py", line 60, in initialize_pipeline
+    st.session_state.agent_executor, _, _ = setup_rag_pipeline()
+                                            ~~~~~~~~~~~~~~~~~~^^
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\pipeline.py", line 83, in setup_rag_pipeline
+    vector_store = get_or_create_vector_store(chunks)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\vector_store.py", line 123, in get_or_create_vector_store
+    return build_vector_store(chunks)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\vector_store.py", line 36, in build_vector_store
+    vector_store = Qdrant.from_documents(
+        chunks,
+    ...<3 lines>...
+        collection_name=config.QDRANT_COLLECTION_NAME
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langchain_core\vectorstores\base.py", line 814, in from_documents
+    return cls.from_texts(texts, embedding, metadatas=metadatas, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langchain_qdrant\vectorstores.py", line 1337, in from_texts
+    qdrant = cls.construct_instance(
+        texts,
+    ...<28 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langchain_qdrant\vectorstores.py", line 1753, in construct_instance
+    client.create_collection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        collection_name=collection_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        timeout=timeout,  # type: ignore[arg-type]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\qdrant_client\qdrant_client.py", line 1752, in create_collection
+    assert len(kwargs) == 0, f"Unknown arguments: {list(kwargs.keys())}"
+           ^^^^^^^^^^^^^^^^
+AssertionError: Unknown arguments: ['init_from']

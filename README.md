@@ -20,6 +20,10 @@ uv pip install -r requirements.txt
 
 The prompt should show `(basicragenv)` after activation.
 
+Qdrant is the active vector store. Set both `QDRANT_URL` and
+`QDRANT_API_KEY` to use Qdrant Cloud. A local FAISS fallback is available when
+both are unset; uncomment `faiss-cpu` in `requirements.txt` before using it.
+
 ## Bash
 
 For Git Bash on Windows, run:

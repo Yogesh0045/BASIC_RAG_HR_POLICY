@@ -16,7 +16,7 @@ def create_agent_executor(retriever):
     Create a complete agent executor with tools and LLM.
     
     Args:
-        retriever: FAISS retriever from vector store.
+        retriever: Qdrant retriever from the vector store.
     
     Returns:
         A compiled graph agent ready to process queries.

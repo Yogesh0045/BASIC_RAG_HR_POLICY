@@ -33,8 +33,11 @@ LOAD_FILE_PATH = os.path.join("data", "hr_policy.txt")
 ## Persistant in memory- vectors
 
 ## Cloud memory
+QDRANT_URL = os.getenv("QDRANT_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+QDRANT_COLLECTION_NAME = os.getenv("QDRANT_COLLECTION_NAME", "hr_policy_assistant" )
 
-
+## Local fallback vector store
 VECTOR_STORE_PATH = os.path.join("data", "faiss_index")
 
 

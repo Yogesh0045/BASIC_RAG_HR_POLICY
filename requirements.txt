@@ -11,7 +11,9 @@ langchain-text-splitters
 
 ## Vector store
 
-faiss-cpu
+langchain-qdrant
+qdrant-client==1.15.1
+#faiss-cpu
 ipykernel
 
 streamlit

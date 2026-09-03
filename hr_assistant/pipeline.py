@@ -8,15 +8,12 @@ from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from hr_assistant import config
 from hr_assistant.vector_store import (
-    build_vector_store,
-    save_vector_store,
     get_or_create_vector_store,
     get_retriever,
 )
 from hr_assistant.agent import create_agent_executor
 from hr_assistant.tracing import check_langsmith_tracing
 from hr_assistant.logger import get_logger  
-
 logger = get_logger(__name__)
 
 # Check Langsmith tracing status
@@ -84,7 +81,7 @@ def setup_rag_pipeline():
     # Step 3: Build/load vector store
     logger.info("Step 3: Setting up vector store...")
     vector_store = get_or_create_vector_store(chunks)
-    logger.info(f"Vector store ready with {vector_store.index.ntotal} embeddings")
+    logger.info("Vector store is ready")
     
     # Step 4: Create retriever
     logger.info("\nStep 4: Creating retriever...")
