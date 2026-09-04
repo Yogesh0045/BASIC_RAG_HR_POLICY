@@ -1,0 +1,82 @@
+2026-09-04 11:38:22,232 | INFO | hr_assistant.tracing | Langsmith tracing is ENABLED.
+2026-09-04 11:38:22,232 | INFO | hr_assistant.tracing | Langsmith Endpoint: https://api.smith.langchain.com
+2026-09-04 11:38:22,232 | INFO | hr_assistant.tracing | Langsmith Project: HR_Policy_Assistant
+2026-09-04 11:38:22,817 | INFO | __main__ | Initializing HR RAG pipeline
+2026-09-04 11:38:22,818 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-04 11:38:22,819 | INFO | hr_assistant.pipeline | Setting up HR RAG Pipeline...
+2026-09-04 11:38:22,819 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-04 11:38:22,826 | INFO | hr_assistant.pipeline | Step 1: Loading documents...
+2026-09-04 11:38:22,827 | INFO | hr_assistant.pipeline | Loaded 1 document(s)
+2026-09-04 11:38:22,827 | INFO | hr_assistant.pipeline | Step 2: Splitting documents into chunks...
+2026-09-04 11:38:22,827 | INFO | hr_assistant.pipeline | Split into 9 chunks
+2026-09-04 11:38:22,827 | INFO | hr_assistant.pipeline | Step 3: Setting up vector store...
+2026-09-04 11:38:24,069 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-04 11:38:25,299 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/exists "HTTP/1.1 200 OK"
+2026-09-04 11:38:25,300 | INFO | hr_assistant.vector_store | Loading existing Qdrant Cloud collection: hr_policy_assistant
+2026-09-04 11:38:25,301 | INFO | hr_assistant.vector_store | Loading existing Qdrant Cloud collection: hr_policy_assistant
+2026-09-04 11:38:25,301 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-04 11:38:26,525 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-04 11:38:26,530 | INFO | hr_assistant.pipeline | Vector store is ready
+2026-09-04 11:38:26,531 | INFO | hr_assistant.pipeline | 
+Step 4: Creating retriever...
+2026-09-04 11:38:26,531 | INFO | hr_assistant.vector_store | Creating retriever with top 3 results.
+2026-09-04 11:38:26,531 | INFO | hr_assistant.pipeline | Retriever configured for top-3 results
+2026-09-04 11:38:26,531 | INFO | hr_assistant.pipeline | 
+Step 5: Building agent executor...
+2026-09-04 11:38:26,531 | INFO | hr_assistant.agent | Creating agent executor...
+2026-09-04 11:38:26,532 | INFO | hr_assistant.llm | Initializing LLM model: via Portkey Gateway
+2026-09-04 11:38:26,532 | INFO | hr_assistant.gateway | Creating ChatOpenAI instance with Portkey Gateway routing.
+2026-09-04 11:38:26,940 | INFO | hr_assistant.agent | Agent executor created successfully.
+2026-09-04 11:38:26,941 | INFO | hr_assistant.pipeline | Agent ready!
+2026-09-04 11:38:26,941 | INFO | hr_assistant.pipeline | 
+============================================================
+2026-09-04 11:38:26,941 | INFO | hr_assistant.pipeline | HR RAG Pipeline Setup Complete!
+2026-09-04 11:38:26,941 | INFO | hr_assistant.pipeline | ============================================================
+
+2026-09-04 11:38:26,942 | INFO | __main__ | HR RAG pipeline initialized successfully
+2026-09-04 11:38:40,857 | INFO | __main__ | Chat message received
+2026-09-04 11:38:40,860 | INFO | __main__ | Processing user question
+2026-09-04 11:38:41,578 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:38:41,595 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-04 11:38:41,595 | INFO | hr_assistant.agent | Asking assistant: Hi
+2026-09-04 11:38:42,295 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:38:42,704 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:38:42,707 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-04 11:38:42,708 | INFO | hr_assistant.agent | ANSWER: Hello! 👋 How can I assist you with our HR policies today?
+2026-09-04 11:38:42,708 | INFO | __main__ | User question processed successfully
+2026-09-04 11:39:08,512 | INFO | __main__ | Chat message received
+2026-09-04 11:39:08,514 | INFO | __main__ | Processing user question
+2026-09-04 11:39:08,984 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:39:08,986 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-04 11:39:08,987 | INFO | hr_assistant.agent | Asking assistant: Tell me about sick leave policy
+2026-09-04 11:39:10,003 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:39:10,559 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:39:10,561 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-04 11:39:10,561 | INFO | hr_assistant.tools | Searching HR policy for: sick leave policy
+2026-09-04 11:39:12,840 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-04 11:39:12,853 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-04 11:39:13,834 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:39:14,246 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-04 11:39:14,249 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-04 11:39:14,249 | INFO | hr_assistant.agent | ANSWER: **Sick Leave Policy (as outlined in the HR policy document)**  
+
+| Item | Detail |
+|------|--------|
+| **Entitlement** | 10 paid sick days per calendar year for full‑time employees. |
+| **Separate from Annual Leave** | Sick leave is distinct from the 20 days of paid annual leave. |
+| **Medical Certificate Requirement** | A medical certificate is required for any sick leave that exceeds **2 consecutive days**. |
+| **Procedure** | – Submit the sick leave request through the HR portal. <br>– Attach the medical certificate (if needed) at the time of submission. |
+| **Unpaid Sick Leave** | If an employee’s sick leave exceeds the 10 paid days, the remaining days will be unpaid (unless otherwise specified by a specific medical condition or extended leave policy). |
+| **Carry‑over** | Sick leave does **not** carry over to the next calendar year. All 10 days must be used within the year. |
+
+**Key Takeaways**
+
+- You get **10 paid sick days** each year.  
+- A **medical certificate** is mandatory for any sick leave lasting more than two days.  
+- Sick leave is counted separately from your 20 days of annual vacation.  
+- Unused sick days do **not** roll over; they expire at the end of the calendar year.  
+
+If you have any questions about how to submit a sick leave request or need clarification on specific scenarios (e.g., chronic illness, work‑related injury), feel free to let me know!
+2026-09-04 11:39:14,250 | INFO | __main__ | User question processed successfully
