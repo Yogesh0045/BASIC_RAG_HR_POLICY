@@ -13,6 +13,10 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 ## EMBEDDINGS API KEY
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
+## GATEWAY
+
+PORTKEY_API_KEY = os.getenv("PORTKEY_API_KEY")
+
 ## GUARD MODEL
 GUARD_MODEL_NAME = "openai/gpt-oss-safeguard-20b"
 
@@ -38,11 +42,11 @@ QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 QDRANT_COLLECTION_NAME = os.getenv("QDRANT_COLLECTION_NAME", "hr_policy_assistant" )
 
 ## Local fallback vector store
-VECTOR_STORE_PATH = os.path.join("data", "faiss_index")
+#VECTOR_STORE_PATH = os.path.join("data", "faiss_index")
 
 
 ## Models (LLM and Embedding model)
-LLM_MODEL_NAME= "openai/gpt-oss-120b"
+LLM_MODEL_NAME= "openai/gpt-oss-20b"
 EMBEDDING_MODEL_NAME= "jina-embeddings-v3"
 
 ## CHUNK / TEXT SPLITTING CONFIG
