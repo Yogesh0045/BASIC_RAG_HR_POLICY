@@ -1,0 +1,396 @@
+2026-09-10 16:49:23,148 | INFO | hr_assistant.vector_store | Loading existing Qdrant Cloud collection: hr_policy_assistant
+2026-09-10 16:49:23,149 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-10 16:49:24,481 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-10 16:49:24,483 | INFO | hr_assistant.vector_store | Creating retriever with top 3 results.
+2026-09-10 16:49:24,483 | INFO | hr_assistant.agent | Creating agent executor...
+2026-09-10 16:49:24,483 | INFO | hr_assistant.llm | Initializing LLM model: via Portkey Gateway
+2026-09-10 16:49:24,483 | INFO | hr_assistant.gateway | Creating ChatOpenAI instance with Portkey Gateway routing.
+2026-09-10 16:49:25,024 | INFO | hr_assistant.agent | Agent executor created successfully.
+2026-09-10 16:49:28,054 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:28,064 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:30,040 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:30,383 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:30,385 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:30,385 | INFO | hr_assistant.tools | Searching HR policy for: reimbursement claims submission deadline days
+2026-09-10 16:49:32,353 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 16:49:32,356 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 16:49:32,873 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:33,155 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:33,156 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 16:49:33,961 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:33,980 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a08b0b-47de-7c30-997b-b4a5619908de: KeyError('context')
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+        run=run,
+        example=example,
+        evaluator_run_id=evaluator_run_id,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+        run,
+        example,
+        langsmith_extra={"run_id": evaluator_run_id, "metadata": metadata},
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\evaluations.py", line 121, in groundedness_evaluator
+    return groundedness_judge(
+        inputs=kwargs.get("inputs", {}),
+        outputs=outputs,
+        reference_outputs=kwargs.get("reference_outputs"),
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+        run_name=run_name,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 219, in get_score
+    formatted_prompt = prompt.format(**filtered_prompt_params)
+KeyError: 'context'
+2026-09-10 16:49:34,285 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:34,287 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:34,921 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:35,233 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:35,235 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:35,235 | INFO | hr_assistant.tools | Searching HR policy for: How many days of unused annual leave can I carry over to the next year?
+2026-09-10 16:49:35,937 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 16:49:35,938 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 16:49:36,689 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:36,980 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:36,981 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 16:49:37,730 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:37,735 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a08b0b-615e-7173-9eaf-921c2d1a8324: KeyError('context')
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+        run=run,
+        example=example,
+        evaluator_run_id=evaluator_run_id,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+        run,
+        example,
+        langsmith_extra={"run_id": evaluator_run_id, "metadata": metadata},
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\evaluations.py", line 121, in groundedness_evaluator
+    return groundedness_judge(
+        inputs=kwargs.get("inputs", {}),
+        outputs=outputs,
+        reference_outputs=kwargs.get("reference_outputs"),
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+        run_name=run_name,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 219, in get_score
+    formatted_prompt = prompt.format(**filtered_prompt_params)
+KeyError: 'context'
+2026-09-10 16:49:38,168 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:38,170 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:38,772 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:39,097 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:39,098 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:39,099 | INFO | hr_assistant.tools | Searching HR policy for: How many days of paid annual leave do I get per year?
+2026-09-10 16:49:40,466 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 16:49:40,468 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 16:49:41,008 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:41,397 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:41,399 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 16:49:42,342 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:42,348 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a08b0b-7009-7662-b8b7-c810ecb78e64: KeyError('context')
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+        run=run,
+        example=example,
+        evaluator_run_id=evaluator_run_id,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+        run,
+        example,
+        langsmith_extra={"run_id": evaluator_run_id, "metadata": metadata},
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\evaluations.py", line 121, in groundedness_evaluator
+    return groundedness_judge(
+        inputs=kwargs.get("inputs", {}),
+        outputs=outputs,
+        reference_outputs=kwargs.get("reference_outputs"),
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+        run_name=run_name,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 219, in get_score
+    formatted_prompt = prompt.format(**filtered_prompt_params)
+KeyError: 'context'
+2026-09-10 16:49:42,954 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:42,956 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:43,571 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:43,884 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:43,886 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:43,886 | INFO | hr_assistant.tools | Searching HR policy for: full and final settlement processed within how many days
+2026-09-10 16:49:44,803 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 16:49:44,804 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 16:49:45,354 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:45,704 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:45,706 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 16:49:46,514 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:46,520 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a08b0b-820e-7751-9d4c-688a68f38ecd: KeyError('context')
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+        run=run,
+        example=example,
+        evaluator_run_id=evaluator_run_id,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+        run,
+        example,
+        langsmith_extra={"run_id": evaluator_run_id, "metadata": metadata},
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\evaluations.py", line 121, in groundedness_evaluator
+    return groundedness_judge(
+        inputs=kwargs.get("inputs", {}),
+        outputs=outputs,
+        reference_outputs=kwargs.get("reference_outputs"),
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+        run_name=run_name,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 219, in get_score
+    formatted_prompt = prompt.format(**filtered_prompt_params)
+KeyError: 'context'
+2026-09-10 16:49:46,813 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:46,815 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:47,391 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:48,022 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:48,023 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:48,023 | INFO | hr_assistant.tools | Searching HR policy for: How many days per week can I work from home?
+2026-09-10 16:49:48,938 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 16:49:48,939 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 16:49:49,543 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:49,834 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:49,835 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 16:49:50,645 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:50,652 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a08b0b-925a-7da0-ad27-fcbac289fede: KeyError('context')
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+        run=run,
+        example=example,
+        evaluator_run_id=evaluator_run_id,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+        run,
+        example,
+        langsmith_extra={"run_id": evaluator_run_id, "metadata": metadata},
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\evaluations.py", line 121, in groundedness_evaluator
+    return groundedness_judge(
+        inputs=kwargs.get("inputs", {}),
+        outputs=outputs,
+        reference_outputs=kwargs.get("reference_outputs"),
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+        run_name=run_name,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 219, in get_score
+    formatted_prompt = prompt.format(**filtered_prompt_params)
+KeyError: 'context'
+2026-09-10 16:49:50,945 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:50,947 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:51,445 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:51,744 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:51,746 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:51,747 | INFO | hr_assistant.tools | Searching HR policy for: How many public holidays are there in a year?
+2026-09-10 16:49:52,512 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 16:49:52,514 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 16:49:53,318 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:53,627 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:53,628 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 16:49:54,446 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:54,452 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a08b0b-a27e-7b13-ac83-49a60df0aa4f: KeyError('context')
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+        run=run,
+        example=example,
+        evaluator_run_id=evaluator_run_id,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+        run,
+        example,
+        langsmith_extra={"run_id": evaluator_run_id, "metadata": metadata},
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\evaluations.py", line 121, in groundedness_evaluator
+    return groundedness_judge(
+        inputs=kwargs.get("inputs", {}),
+        outputs=outputs,
+        reference_outputs=kwargs.get("reference_outputs"),
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+        run_name=run_name,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 219, in get_score
+    formatted_prompt = prompt.format(**filtered_prompt_params)
+KeyError: 'context'
+2026-09-10 16:49:54,784 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:54,786 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:55,280 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:55,745 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:55,747 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 16:49:55,747 | INFO | hr_assistant.tools | Searching HR policy for: How many paid sick leave days do I get per year?
+2026-09-10 16:49:56,582 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 16:49:56,585 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 16:49:57,129 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:57,436 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:49:57,438 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 16:49:57,572 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 16:49:57,573 | INFO | openai._base_client | Retrying request in 5.000000 seconds
+2026-09-10 16:50:03,802 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 16:50:03,809 | ERROR | langsmith.evaluation._runner | Error running evaluator <DynamicRunEvaluator groundedness_evaluator> on run 01a08b0b-b155-7e92-a223-d54e68c0e778: KeyError('context')
+Traceback (most recent call last):
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\_runner.py", line 1689, in _run_evaluators
+    evaluator_response = evaluator.evaluate_run(  # type: ignore[call-arg]
+        run=run,
+        example=example,
+        evaluator_run_id=evaluator_run_id,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 370, in evaluate_run
+    result = self.func(
+        run,
+        example,
+        langsmith_extra={"run_id": evaluator_run_id, "metadata": metadata},
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\evaluation\evaluator.py", line 791, in wrapper
+    return func(*args, **kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\hr_assistant\evaluations.py", line 121, in groundedness_evaluator
+    return groundedness_judge(
+        inputs=kwargs.get("inputs", {}),
+        outputs=outputs,
+        reference_outputs=kwargs.get("reference_outputs"),
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 600, in _wrapped_evaluator
+    res = _run_evaluator_untyped(
+        run_name=run_name,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 293, in _run_evaluator_untyped
+    results = _run_scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\langsmith\run_helpers.py", line 808, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\utils.py", line 206, in _run_scorer
+    score = scorer(**kwargs)
+  File "D:\HR_RAG_POLICY_AGENT\.venv\Lib\site-packages\openevals\llm.py", line 219, in get_score
+    formatted_prompt = prompt.format(**filtered_prompt_params)
+KeyError: 'context'
+2026-09-10 16:50:04,112 | INFO | hr_assistant.evaluations | Evaluation started for dataset 'hr_assistant_evaluation'

@@ -18,6 +18,10 @@ from hr_assistant.logger import get_logger
 
 logger = get_logger(__name__)
 
+PRIMARY_PROVIDER = "@hrpolicy"
+JUDGE_LLM_PROVIDER = "@judge-llm-groq"
+
+
 def get_gateway_llm() -> ChatOpenAI:
     """
     Get a ChatOpenAI instance that routes through the Portkey Gateway.
@@ -26,7 +30,7 @@ def get_gateway_llm() -> ChatOpenAI:
     logger.info("Creating ChatOpenAI instance with Portkey Gateway routing.")
     headers = createHeaders(
         api_key=config.PORTKEY_API_KEY,
-        provider="@hrpolicy",
+        provider=PRIMARY_PROVIDER,
     )
     return ChatOpenAI(
         model=config.LLM_MODEL_NAME,
@@ -37,3 +41,21 @@ def get_gateway_llm() -> ChatOpenAI:
         request_timeout=30,
     )
 
+def get_judge_llm() -> ChatOpenAI:
+    """
+    Get a ChatOpenAI instance that routes through the Portkey Gateway.
+    This is the main model used for the HR assistant.
+    """
+    logger.info("Creating ChatOpenAI instance with Portkey Gateway routing.")
+    headers = createHeaders(
+        api_key=config.PORTKEY_API_KEY,
+        provider=JUDGE_LLM_PROVIDER,
+    )
+    return ChatOpenAI(
+        model=config.LLM_MODEL_NAME,
+        api_key="portkey",  # dummy value, the real key is in the headers
+        base_url=PORTKEY_GATEWAY_URL,
+        default_headers=headers, # Real key is in the headers, not in the api_key param
+        max_tokens=1024,
+        request_timeout=30,
+    )

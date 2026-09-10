@@ -1,0 +1,137 @@
+2026-09-10 17:46:31,993 | INFO | hr_assistant.evaluations | Dataset 'hr_assistant_evaluation' already exists, reusing it
+2026-09-10 17:46:32,318 | INFO | hr_assistant.vector_store | Loading existing Qdrant Cloud collection: hr_policy_assistant
+2026-09-10 17:46:32,318 | INFO | hr_assistant.embeddings | Initializing embeddings model: jina-embeddings-v3
+2026-09-10 17:46:33,449 | INFO | httpx | HTTP Request: GET https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"
+2026-09-10 17:46:33,450 | INFO | hr_assistant.vector_store | Creating retriever with top 3 results.
+2026-09-10 17:46:33,450 | INFO | hr_assistant.agent | Creating agent executor...
+2026-09-10 17:46:33,452 | INFO | hr_assistant.llm | Initializing LLM model: via Portkey Gateway
+2026-09-10 17:46:33,452 | INFO | hr_assistant.gateway | Creating ChatOpenAI instance with Portkey Gateway routing.
+2026-09-10 17:46:33,715 | INFO | hr_assistant.agent | Agent executor created successfully.
+2026-09-10 17:46:33,715 | INFO | hr_assistant.llm | Initializing LLM model: via Portkey Gateway
+2026-09-10 17:46:33,715 | INFO | hr_assistant.gateway | Creating ChatOpenAI instance with Portkey Gateway routing.
+2026-09-10 17:46:36,326 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:36,334 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:46:37,932 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:38,500 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:38,503 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:46:38,503 | INFO | hr_assistant.tools | Searching HR policy for: reimbursement claims submission deadline days
+2026-09-10 17:46:40,418 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 17:46:40,420 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 17:46:41,020 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:41,298 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:41,300 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 17:46:43,025 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:43,588 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:43,915 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:43,918 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:46:44,508 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:44,994 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:44,996 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:46:44,996 | INFO | hr_assistant.tools | Searching HR policy for: How many days of unused annual leave can I carry over to the next year?
+2026-09-10 17:46:46,556 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 17:46:46,559 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 17:46:47,360 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:47,987 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:47,989 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 17:46:48,750 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:50,045 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:50,447 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:50,449 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:46:51,069 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:51,425 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:51,427 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:46:51,427 | INFO | hr_assistant.tools | Searching HR policy for: How many days of paid annual leave do I get per year?
+2026-09-10 17:46:52,971 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 17:46:52,973 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 17:46:53,310 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:53,638 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:53,639 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 17:46:54,639 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:54,799 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:46:54,800 | INFO | openai._base_client | Retrying request in 1.000000 seconds
+2026-09-10 17:46:55,948 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:46:55,949 | INFO | openai._base_client | Retrying request in 2.000000 seconds
+2026-09-10 17:46:58,958 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:59,635 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:46:59,637 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:46:59,758 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:46:59,759 | INFO | openai._base_client | Retrying request in 1.000000 seconds
+2026-09-10 17:47:00,896 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:00,897 | INFO | openai._base_client | Retrying request in 2.000000 seconds
+2026-09-10 17:47:03,308 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:03,649 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:03,651 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:47:03,651 | INFO | hr_assistant.tools | Searching HR policy for: Within how many days is full and final settlement processed?
+2026-09-10 17:47:05,016 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 17:47:05,018 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 17:47:05,509 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:05,859 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:05,861 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 17:47:05,969 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:05,970 | INFO | openai._base_client | Retrying request in 6.000000 seconds
+2026-09-10 17:47:13,158 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:13,362 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:13,363 | INFO | openai._base_client | Retrying request in 6.000000 seconds
+2026-09-10 17:47:20,531 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:21,185 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:21,187 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:47:21,716 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:22,041 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:22,043 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:47:22,044 | INFO | hr_assistant.tools | Searching HR policy for: How many days per week can I work from home?
+2026-09-10 17:47:23,557 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 17:47:23,558 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 17:47:23,685 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:23,686 | INFO | openai._base_client | Retrying request in 3.000000 seconds
+2026-09-10 17:47:27,289 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:27,801 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:27,803 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 17:47:27,909 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:27,910 | INFO | openai._base_client | Retrying request in 4.000000 seconds
+2026-09-10 17:47:32,026 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:32,026 | INFO | openai._base_client | Retrying request in 1.000000 seconds
+2026-09-10 17:47:34,049 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:34,159 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:34,160 | INFO | openai._base_client | Retrying request in 9.000000 seconds
+2026-09-10 17:47:44,910 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:45,413 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:45,415 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:47:45,927 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:46,439 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:46,441 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:47:46,441 | INFO | hr_assistant.tools | Searching HR policy for: How many public holidays are there in a year?
+2026-09-10 17:47:48,178 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 17:47:48,180 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 17:47:48,383 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:48,384 | INFO | openai._base_client | Retrying request in 1.000000 seconds
+2026-09-10 17:47:49,557 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:49,558 | INFO | openai._base_client | Retrying request in 2.000000 seconds
+2026-09-10 17:47:52,487 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:53,074 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:53,075 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 17:47:53,298 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:53,299 | INFO | openai._base_client | Retrying request in 4.000000 seconds
+2026-09-10 17:47:58,316 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:47:58,494 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:47:58,495 | INFO | openai._base_client | Retrying request in 9.000000 seconds
+2026-09-10 17:48:09,072 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:09,581 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:09,582 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:48:09,892 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:48:09,893 | INFO | openai._base_client | Retrying request in 2.000000 seconds
+2026-09-10 17:48:12,652 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:13,266 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:13,268 | INFO | hr_assistant.guardrails | Input guard decision: True
+2026-09-10 17:48:13,268 | INFO | hr_assistant.tools | Searching HR policy for: paid sick leave days per year
+2026-09-10 17:48:15,182 | INFO | httpx | HTTP Request: POST https://7573185c-2a10-4832-8db8-1f63f4996c19.sa-east-1-0.aws.cloud.qdrant.io:6333/collections/hr_policy_assistant/points/search "HTTP/1.1 200 OK"
+2026-09-10 17:48:15,183 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-10 17:48:15,638 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:16,196 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:16,198 | INFO | hr_assistant.guardrails | Output guard decision: True
+2026-09-10 17:48:16,372 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:48:16,373 | INFO | openai._base_client | Retrying request in 5.000000 seconds
+2026-09-10 17:48:22,380 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:22,578 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-10 17:48:22,579 | INFO | openai._base_client | Retrying request in 9.000000 seconds
+2026-09-10 17:48:32,927 | INFO | httpx2 | HTTP Request: POST https://api.portkey.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-10 17:48:33,337 | INFO | hr_assistant.evaluations | Evaluation started for dataset 'hr_assistant_evaluation'

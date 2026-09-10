@@ -2,7 +2,7 @@
 
 #from langchain_groq import ChatGroq
 
-from hr_assistant.gateway import get_gateway_llm
+from hr_assistant.gateway import get_gateway_llm, get_judge_llm
 from hr_assistant import config
 from hr_assistant.logger import get_logger
 
@@ -18,4 +18,17 @@ def get_llm():
     config.check_api_keys()
     logger.info(f"Initializing LLM model: via Portkey Gateway")
     llm = get_gateway_llm()
+    return llm
+
+
+def get_the_judge_llm():
+    """
+    Create and return a ChatOpenAI LLM instance through the Portkey Gateway.
+    
+    Returns:
+        ChatOpenAI: LLM model configured with Portkey Gateway.
+    """
+    config.check_api_keys()
+    logger.info(f"Initializing LLM model: via Portkey Gateway")
+    llm = get_judge_llm()
     return llm
