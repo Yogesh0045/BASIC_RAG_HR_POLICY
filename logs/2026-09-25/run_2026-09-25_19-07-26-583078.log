@@ -1,3 +1,0 @@
-2026-09-25 19:07:30,873 | INFO | hr_assistant.tracing | Langsmith tracing is ENABLED.
-2026-09-25 19:07:30,874 | INFO | hr_assistant.tracing | Langsmith Endpoint: https://api.smith.langchain.com
-2026-09-25 19:07:30,874 | INFO | hr_assistant.tracing | Langsmith Project: HR_Policy_Assistant
