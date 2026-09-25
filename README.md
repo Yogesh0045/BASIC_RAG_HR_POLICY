@@ -22,7 +22,9 @@ The prompt should show `(basicragenv)` after activation.
 
 Qdrant is the active vector store. Set both `QDRANT_URL` and
 `QDRANT_API_KEY` to use Qdrant Cloud. A local FAISS fallback is available when
-both are unset; uncomment `faiss-cpu` in `requirements.txt` before using it.
+both are unset or when Qdrant is temporarily unavailable and `data/faiss_index`
+exists. Set `QDRANT_FALLBACK_TO_LOCAL=false` to disable the fallback. The
+`faiss-cpu` dependency is included for this fallback.
 
 ## Bash
 
@@ -53,7 +55,8 @@ uv pip install -e .
 uv run hr-rag-policy-agent
 ```
 
-The current entry point prints a starter message while the agent is being developed.
+The CLI loads the HR policy document, builds or loads the configured vector
+store, and starts an interactive assistant session.
 
 ## Project Layout
 

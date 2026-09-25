@@ -6,8 +6,14 @@ dist/
 wheels/
 *.egg-info
 .env
+.env.*
 .venv
 
+# AWS credentials and private keys
+.aws/
+*.pem
+*.key
+hr_rag_accessKeys.csv
 
 # Virtual environments
 basicrangenv

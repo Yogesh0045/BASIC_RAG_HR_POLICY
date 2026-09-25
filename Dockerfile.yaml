@@ -1,0 +1,30 @@
+# This is a python image
+FROM python:3.14-slim
+
+# USE UV FOR VENV
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Make a dir for a code
+WORKDIR /app
+
+
+# Pull the requirements
+COPY requirements.txt .
+
+# Run the requirement file
+RUN uv pip install --system --no-cache -r requirements.txt
+
+# Copy my Code
+COPY . .
+
+# PORT MAPPING
+EXPOSE 8501
+
+# How to run my app
+
+CMD ["streamlit", "run", "app.py", "--server.address=0.0.0.0"]
+
+
+
+
+

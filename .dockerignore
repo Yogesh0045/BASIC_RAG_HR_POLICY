@@ -1,0 +1,41 @@
+.env
+.venv/
+basicragenv/
+__pycache__/
+*.pyc
+.git/
+.github/
+logs/
+*.ipynb_checkpoints/# Never bake secrets into the image; pass them at runtime instead.
+.env
+.env.*
+!.env.example
+
+
+# Local environments and Python caches.
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+
+# Generated at runtime, not part of the app itself.
+logs/
+*.log
+
+
+# Repository and editor metadata.
+.git/
+.gitignore
+.vscode/
+.idea/
+
+
+# Not needed to run the app.
+*.ipynb
+README.md

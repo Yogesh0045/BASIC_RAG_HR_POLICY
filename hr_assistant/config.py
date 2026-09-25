@@ -40,9 +40,14 @@ LOAD_FILE_PATH = os.path.join("data", "hr_policy.txt")
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 QDRANT_COLLECTION_NAME = os.getenv("QDRANT_COLLECTION_NAME", "hr_policy_assistant" )
+QDRANT_FALLBACK_TO_LOCAL = os.getenv("QDRANT_FALLBACK_TO_LOCAL", "true").lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 ## Local fallback vector store
-#VECTOR_STORE_PATH = os.path.join("data", "faiss_index")
+VECTOR_STORE_PATH = os.path.join("data", "faiss_index")
 
 
 ## Models (LLM and Embedding model)
@@ -59,9 +64,9 @@ TOP_K_RESULTS = 3
 
 # SYSTEM INSTRUCTIONS
 
-system_prompt= (
-   "You are a friendly HR assistant"
-    "Always use the search_hr_policy tool to look up"
+system_prompt = (
+    "You are a friendly HR assistant. "
+    "Always use the search_hr_policy tool to look up "
     "facts before answering. If the answer isn't in the search results,"
     "say you don't know the answer instead of guessing."
 )

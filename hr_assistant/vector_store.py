@@ -117,19 +117,27 @@ def get_or_create_vector_store(chunks):
             "or unset both to use the local FAISS fallback."
         )
 
-    client = _qdrant_client()
-    if client.collection_exists(config.QDRANT_COLLECTION_NAME):
+    try:
+        client = _qdrant_client()
+        if client.collection_exists(config.QDRANT_COLLECTION_NAME):
+            logger.info(
+                "Loading existing Qdrant Cloud collection: %s",
+                config.QDRANT_COLLECTION_NAME,
+            )
+            return load_vector_store()
+
         logger.info(
-            "Loading existing Qdrant Cloud collection: %s",
+            "Creating Qdrant Cloud collection: %s",
             config.QDRANT_COLLECTION_NAME,
         )
-        return load_vector_store()
-
-    logger.info(
-        "Creating Qdrant Cloud collection: %s",
-        config.QDRANT_COLLECTION_NAME,
-    )
-    return build_vector_store(chunks)
+        return build_vector_store(chunks)
+    except Exception:
+        if config.QDRANT_FALLBACK_TO_LOCAL and os.path.exists(config.VECTOR_STORE_PATH):
+            logger.exception(
+                "Qdrant is unavailable; falling back to the local FAISS vector store."
+            )
+            return load_local_vector_store()
+        raise
 
 
 def get_retriever(vector_store, k=None):

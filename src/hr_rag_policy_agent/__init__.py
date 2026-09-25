@@ -1,2 +1,8 @@
+"""Installed entry point for the HR Policy Assistant."""
+
+
 def main() -> None:
-    print("Hello from hr-rag-policy-agent!")
+    """Launch the interactive command-line assistant."""
+    from main import main as run_assistant
+
+    run_assistant()
