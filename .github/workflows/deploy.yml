@@ -75,6 +75,7 @@ jobs:
         script: |
           set -euo pipefail
 
+          # Docker installation
           # Install Docker on the host if it is not already installed.
           # Fresh instance deployable with zero manual setup beyond SSH access.
           if ! command -v docker >/dev/null 2>&1; then
