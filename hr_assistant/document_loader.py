@@ -6,10 +6,10 @@ from hr_assistant.logger import get_logger
 
 logger = get_logger(__name__)
 
-def load_documents(file_path: str = config.DATA_FILE_PATH):
+def load_documents(file_path: str = config.LOAD_FILE_PATH):
     """Load a .txt file and return it as a list of LangChain Document """
     logger.info(f"Loading document from {file_path}")
-    documents = TextLoader(file_path, encoding="utf-8")
-    logger.info(f"Loaded %d documents(s)", len(documents))
+    documents = TextLoader(file_path, encoding="utf-8").load()
+    logger.info("Loaded %d documents(s)", len(documents))
 
-    return documents.load()
+    return documents

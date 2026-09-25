@@ -20,7 +20,60 @@ env:
   APP_PORT: 8501
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check code for errors
+        run: |
+          # Syntax errors in any project file
+          python -m compileall -q app.py main.py evaluate.py hr_assistant
+          # Import errors (missing packages, bad names, broken module-level code)
+          python - <<'EOF'
+          import importlib, pkgutil, hr_assistant
+          for m in pkgutil.iter_modules(hr_assistant.__path__):
+              importlib.import_module(f"hr_assistant.{m.name}")
+              print(f"OK hr_assistant.{m.name}")
+          EOF
+
+  evaluate:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run evaluations
+        env:
+          ENV_FILE_CONTENT: ${{ secrets.APP_ENV_FILE }}
+        run: |
+          printf '%s' "$ENV_FILE_CONTENT" > .env
+          python evaluate.py
+
   build-and-push:
+    needs: evaluate
     runs-on: ubuntu-latest
     outputs:
       image: ${{ steps.build.outputs.image }}
