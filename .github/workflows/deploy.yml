@@ -65,12 +65,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run evaluations
+      - name: Write .env
         env:
           ENV_FILE_CONTENT: ${{ secrets.APP_ENV_FILE }}
-        run: |
-          printf '%s' "$ENV_FILE_CONTENT" > .env
-          python evaluate.py
+        run: printf '%s' "$ENV_FILE_CONTENT" > .env
+
+      - name: Smoke test (one real question end to end)
+        run: python -m pytest tests/test_ask.py -v
+
+      - name: Run evaluations
+        run: python evaluate.py
 
   build-and-push:
     needs: evaluate
